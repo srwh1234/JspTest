@@ -52,6 +52,7 @@
 						integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 						crossorigin="anonymous"></script>
 
+
 				<!--會員登入-->
 				<link href="${myPath}/css/login.css" rel="stylesheet" />
 
@@ -74,7 +75,7 @@
 							</div>
 
 							<ul class="menu ml-auto mt-1">
-								<li class="active"><a href="home">首頁</a></li>
+								<li class="active"><a href="index">首頁</a></li>
 								<li class=""><a href="ticket">票券</a></li>
 								
 								<li class="booking"><a href="" id="login">登入/註冊</a></li>
