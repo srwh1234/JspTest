@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <title>TripLight | Articles</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <!-- 關鍵字設定 -->
+  <meta name="keywords" content="旅遊, 行程規劃, 票券, AI, ChatGPT, Google map, 客製化行程, 套裝行程" />
+  <!-- 網頁介紹 -->
+  <meta name="description" content="我們提供旅遊行程規劃服務，以及販售套裝行程 票券 等等" />
+
+  <script>
+    addEventListener(
+      "load",
+      function () {
+        setTimeout(hideURLbar, 0);
+      },
+      false
+    );
+
+    function hideURLbar() {
+      window.scrollTo(0, 1);
+    }
+  </script>
+
+  <style>
+    .fixed-size-image {
+      width: 200px;
+      /* 設定圖片寬度為200像素 */
+      height: 150px;
+      /* 設定圖片高度為150像素 */
+      object-fit: cover;
+    }
+
+    #body {
+      display: -webkit-box;
+      -webkit-line-clamp: 6;
+      /* 設定要顯示的行數 */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      padding: 30px;
+    }
+  </style>
+
+  <!-- css files -->
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <!-- bootstrap css -->
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <!-- custom css -->
+  <link href="css/fontawesome-all.css" rel="stylesheet" />
+  <!-- fontawesome css -->
+  <!-- //css files -->
+
+  <!-- google fonts -->
+  <!-- 載入字體 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet" />
+  <!-- //google fonts -->
+
+  <!-- 載入icon -->
+  <link rel="shortcut icon" href="./images/icon.png" />
+  <link rel="bookmark" href="./images/icon.png" />
+
+  <!-- 使用Summernote -->
+  <link href="https://cdn.jsdelivr.net/npm/summernote/dist/summernote-bs4.css" rel="stylesheet">
+
+  <!-- 使用gijgo -->
+  <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css">
+  <!-- 使用Sortable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
+
+  <!-- 使用daterangepicker 選取日期區間 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+
+  <!-- 使用fullcalendar 顯示日曆視圖 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css">
+
+  <!--jQuery-->
+  <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <!--會員登入-->
+  <link href="css/login.css" rel="stylesheet" />
+  <!--sweet alert-->
+  <script src="./js/sweetalert.js"></script>
+</head>
+
+<body>
+  <!-- header -->
+  <header>
+    <div class="container" style="padding-right: 0px">
+      <!-- nav -->
+      <nav class="py-md-4 py-3">
+        <div id="logo">
+          <h1 class="mt-md-0 mt-2">
+            <a href="index.html"><img src="./images/icon.png" class="icon_triplight" />
+              TripLight
+            </a>
+          </h1>
+        </div>
+        <label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
+        <input type="checkbox" id="drop" />
+        <ul class="menu ml-auto mt-1">
+          <li class=""><a href="index.html">首頁</a></li>
+          <li class=""><a href="booking.html">AI行程規劃</a></li>
+          <li class=""><a href="tickets.html">票券</a></li>
+          <li class=""><a href="itinerary_search.html?index=1">套裝行程</a></li>
+          <li class=""><a href="articles.html">旅遊文章</a></li>
+          <li class="booking"><a href="" id="login">登入/註冊</a></li>
+          <li class="">
+            <a href="shopping_car.html"><img src="./images/shoppingCar.svg" alt="" style="width: 2em" /></a>
+          </li>
+        </ul>
+      </nav>
+      <!-- //nav -->
+      <div class="member">
+        <ul class="member_list">
+          <li class="member_li"><a href="login.html"><i class="fa-regular fa-user"></i>管理帳戶</a>
+          </li>
+          <li class="member_li" id="order_li"><a href=""><i class="fa-solid fa-plane"></i>訂單管理</a>
+            <ul class="order_list">
+              <li class="order_content"><a href="tickets_order.html"><i class="fa-solid fa-ticket"></i>票券訂單</a></li>
+              <li class="order_content"><a href="group_order.html"><i class="fa-solid fa-suitcase"></i>旅遊團訂單</a>
+              </li>
+            </ul>
+          </li>
+          <li class="member_li"><a href="my_favorite.html"><i class="fa-regular fa-heart"></i>我的收藏</a></li>
+          <li class="member_li"><a href="article_mylist.html"><i class="fa-solid fa-copy"></i>我的文章</a>
+          </li>
+          <li class="member_li"><a href="membership_rating.html"><i class="fa-regular fa-gem"></i>會員分級</a>
+          </li>
+          <li class="member_li"><a href="question_form.html"><i class="fa-regular fa-comment"></i>提出問題</a>
+          </li>
+          <li class="member_li"><a href="read_question_list.html"><i class="fa-regular fa-comment"></i>查看問題</a></li>
+          <li class="member_li" id="logout_li"><a href=""><i class="fa-solid fa-right-from-bracket"></i>登出</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <!-- header -->
+
+  <!-- 登入  -->
+  <div id="login-container">
+    <!---container--->
+
+    <div class="main-box login">
+      <h3>登入</h3>
+      <form action="">
+        <div class="input-box">
+          <i class="fas fa-envelope icon2"></i> <input type="email" name="email" id="email" required /> <label
+            for="">信箱</label>
+        </div>
+        <div class="input-box">
+          <i class="fas fa-lock icon2"></i> <input type="password" name="password" id="password" required />
+          <label for="">密碼</label>
+        </div>
+        <div class="check">
+          <label><input type="checkbox" />記住我</label> <a href="#" id="forgetPwd">忘記密碼</a>
+        </div>
+        <button type="submit" class="main-btn">Login</button>
+        <div class="register">
+          <p>
+            如果沒有帳號?<a href="#" class="register-link">點擊註冊</a>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <div class="main-box register">
+      <h3>註冊</h3>
+      <form action="">
+        <div class="input-box">
+          <i class="fas fa-user icon2"></i> <input type="email" name="account" id="register_account" required /> <label
+            for="">使用者名稱</label>
+        </div>
+        <div class="input-box">
+          <i class="fas fa-envelope icon2"></i> <input type="email" name="email" id="register_email" required /> <label
+            for="">信箱</label>
+        </div>
+        <div class="input-box">
+          <i class="fas fa-lock icon2"></i> <input type="password" name="password" id="register_password" required />
+          <label for="">密碼</label>
+          <h6 id="pwdHint">密碼設定請超過八碼</h6>
+        </div>
+        <div class="check">
+          <label><input type="checkbox" />我同意所有條款</label>
+        </div>
+        <button type="submit" class="main-btn">註冊</button>
+        <div class="register">
+          <p>
+            已經有帳號?<a href="#" class="login-link">點擊登入</a>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <span class="close-icon">
+      <div class="fas fa-times"></div>
+    </span>
+  </div>
+  <!-- 登入  -->
+
+  <!-- banner -->
+  <section class="banner_inner" id="home">
+    <div class="banner_inner_overlay"></div>
+  </section>
+  <!-- //banner -->
+
+  <!-- 第一排 -->
+  <div class="d-flex justify-content-center">
+    <div class="d-flex align-items-between">
+      <div class="input-group mb-2" style="margin-top: 30px">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false" style="width: 250px;">標題</button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#" id="1">遊記</a></li>
+          <li><a class="dropdown-item" href="#" id="2">食記</a></li>
+          <li><a class="dropdown-item" href="#" id="3">住宿</a></li>
+          <li><a class="dropdown-item" href="#" id="4">評論</a></li>
+          <li><a class="dropdown-item" href="#" id="5">問題</a></li>
+        </ul>
+        <button type="button" class="btn btn-outline-secondary my-nav-link" style="width: 250px;"
+          onclick="redirectToArticleList()">進入論壇</button>
+
+        <!-- <button type="button" class="btn btn-outline-secondary my-nav-link" style="width: 200px;"
+          onclick="redirectToMyFavorite()">收藏文章</button> -->
+
+        <button type="button" class="btn btn-outline-secondary my-nav-link" style="width: 250px;"
+          onclick="redirectToMyList()">我的文章</button>
+
+        <button type="button" class="btn btn-outline-secondary my-nav-link" style="width: 350px;"
+          onclick="redirectToCreateArticle()">發表文章</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- tour packages -->
+  <section class="packages pt-5 border-bottom">
+    <div class="container py-lg-4 py-sm-3">
+      <div class="my-3">
+        <div class="h2">最新文章</div>
+        <!-- 一行4個卡片 -->
+        <div class="row row-cols-4 g-2" id="articleContainer">
+          <!-- class 內有my-nav-link 則點選元素 會跳轉到href指定的位置-->
+          <!-- <div class="col">
+                    <div class="card my-nav-link">
+                        <a href="article_detail.html">
+                            <img src="https://picsum.photos/800/600/?random=36" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <div class="d-flex justify-content-between">
+                                <p>10 comments</p>
+                                <p>by Jay Chen</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+        </div>
+      </div>
+      <div class="container align-items-center justify-content-between d-flex">
+        <button class="more-link">
+          <a href="article_list.html">更多文章</a>
+        </button>
+        <button class="question">
+          <a href="user_chat.html">我想發問</a>
+        </button>
+      </div>
+    </div>
+  </section>
+  <!-- tour packages -->
+
+  <!--footer -->
+  <footer>
+    <section class="footer footer_w3layouts_section_1its py-5">
+      <div class="container py-lg-4 py-3">
+        <div class="row footer-top">
+          <div class="col-lg-3 col-sm-6 footer-grid_section_1">
+            <div class="footer-title">
+              <h3>地點資訊</h3>
+            </div>
+            <div class="row">
+              <ul class="col-12 links">
+                <li>
+                  <a href="https://www.google.com/maps?q=桃園市中壢區復興路46號9樓" target="_blank">地址：桃園市中壢區復興路46號9樓</a>
+                </li>
+                <li><a href="tel:02-1234-5678">電話：02-1234-5678</a></li>
+                <li>
+                  <a href="mailto:triplight0411@gmail.com">信箱：triplight0411@gmail.com</a>
+                </li>
+                <li><a href="tel:02-1234-5678">傳真：02-1234-5678</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 footer-grid_section mt-sm-0 mt-4">
+            <div class="footer-title">
+              <h3>認識TripLight</h3>
+            </div>
+            <div class="row">
+              <ul class="col-10 links">
+                <li><a href="about.html" class="scroll">關於我們</a></li>
+                <li>
+                  <a href="user_terms.html" class="scroll">使用者條款 </a>
+                </li>
+                <li>
+                  <a href="privacy_policy.html" class="scroll">隱私權保護政策</a>
+                </li>
+                <li><a href="faq.html" class="scroll"> 常見問題與幫助</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 mt-lg-0 mt-4 footer-grid_section_1">
+            <div class="footer-title">
+              <h3>成為合作夥伴</h3>
+            </div>
+            <div class="row">
+              <ul class="col-10 links">
+                <li>
+                  <a href="supplier_form.html" class="scroll">成為供應商</a>
+                </li>
+                <li>
+                  <a href="blogger_photographer.html" class="scroll">部落客/攝影師合作計畫</a>
+                </li>
+                <li>
+                  <a href="group_form.html" class="scroll">團體客製規劃</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 mt-lg-0 mt-4 footer-grid_section_1">
+            <div class="footer-title">
+              <h3>聯絡我們</h3>
+            </div>
+            <ul class="social_section_1info">
+              <li>
+                <a href="https://www.facebook.com/TibaMe"><img src="./images/facebook.svg" alt="facebook" /></a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/tibame_wiedu/"><img src="./images/instagram.svg"
+                    alt="instagram" /></a>
+              </li>
+              <li>
+                <a href="https://twitter.com/"><img src="./images/twitter.svg" alt="twitter" /></a>
+              </li>
+              <li class="youtube">
+                <a href="https://www.youtube.com/channel/UClhecf7eOGHwbKW5e7l_pTA"><img src="./images/youtube.svg"
+                    alt="youtube" /></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+  <!-- //footer -->
+
+  <!-- copyright -->
+  <div class="copyright py-3 text-center">
+    <p>COPYRIGHT © 2023 TripLight All rights reserved.</p>
+  </div>
+  <!-- //copyright -->
+
+  <!-- move top -->
+  <div class="move-top text-right">
+    <a href="#home" class="move-top">
+      <span class="fa fa-angle-up mb-3" aria-hidden="true"></span>
+    </a>
+  </div>
+  <!-- move top -->
+
+  <!-- login顯示 -->
+  <script src="./js/Login.js"></script>
+
+  <!-- Jquery -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+  <script>
+
+    function redirectToArticleList() {
+      window.location.href = "article_list.html";
+    };
+
+    function redirectToCreateArticle() {
+      window.location.href = "article_create.html";
+    };
+
+    // function redirectToMyFavorite() {
+    //   window.location.href = "article_myfavorite.html";
+    // };
+
+    function redirectToMyList() {
+      window.location.href = "article_mylist.html";
+    };
+
+    $(document).ready(function () {
+
+      fetch('/article/articles')
+        // fetch('http://localhost:8080/article/articles')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          new_article(data)
+        })
+
+      function new_article(data) {
+        $('#articleContainer').html('');
+
+        // 对文章按照时间进行排序
+        data.sort(function (a, b) {
+          let timeA = new Date(a.articlePostTime);
+          let timeB = new Date(b.articlePostTime);
+          return timeB - timeA;
+        });
+
+        for (let i = 0; i <= Math.min(data.length, 8); i++) {
+          let article = data[i];
+
+          if (!article || article.articleStatus == 1) {
+            continue; // 狀態數字為1，跳過此次迴圈
+          }
+
+          let articleType;
+          switch (article.articleTypeId) {
+            case 1:
+              articleType = '遊記';
+              break;
+            case 2:
+              articleType = '食記';
+              break;
+            case 3:
+              articleType = '住宿';
+              break;
+            case 4:
+              articleType = '評論';
+              break;
+            case 5:
+              articleType = '問題';
+              break;
+            default:
+              articleType = '未知類型';
+              break;
+          }
+
+          let inputDate = article.articlePostTime;
+          let dateTime = new Date(inputDate);
+          let year = dateTime.getFullYear();
+          let month = String(dateTime.getMonth() + 1).padStart(2, "0");
+          let day = String(dateTime.getDate()).padStart(2, "0");
+          let formattedDate = `${year}-${month}-${day}`;
+
+          $('#articleContainer').append(`
+          <a href="/front-end/article_detail.html?id=${article.articleId}">
+            <div class="col mb-3">
+                    <div class="card my-nav-link" position-relative">
+                        <img src="data:image/*;base64,${article.articlePicture}" class="card-img-top fixed-size-image" />
+                    </div>
+                <div class="card-body" id="body">
+                    <h5 class="card-title">
+                      <span>【${articleType}】</span>
+                      <span>${article.articleTitle}</span>
+                    </h5>
+                    <br>
+                    <p class="card-text" id="clamp-lines">
+                      ${article.articlePostContent}
+                    </p>
+                </div>
+                <br>    
+                  <div class="d-flex justify-content-between" style="padding: 0 10px;">
+                    <p>${article.memberName}</p>
+                        <p class="card-text">
+                            <small class="text-muted">${formattedDate}</small>
+                        </p>
+                  </div>
+            </div>
+          </a>
+         `);
+
+        }
+      }
+    });
+
+    $('.dropdown-menu .dropdown-item').click(function () {
+      var selectedId = $(this).attr('id'); // 獲取選中選項的ID
+
+      // 發送 AJAX 請求到後端，獲取所有文章
+      fetch('/article/articles')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          select_article(data, selectedId);
+        }) // 所有文章的陣列
+    });
+
+    function select_article(data, selectedId) {
+      // 清空文章容器
+      $('#articleContainer').html('');
+
+      console.log(data);
+      console.log(selectedId);
+
+      var allArticles = data;
+      var filteredArticles = [];
+
+      for (let article of allArticles) {
+        if (article.articleTypeId == selectedId) {
+          if (article.articleStatus !== 1) {
+            filteredArticles.push(article);
+          }
+        }
+      }
+
+      for (let i = 0; i < 1; i++) {
+        let article = filteredArticles[i];
+        // 迭代每個篩選後的文章，渲染到網頁上
+        filteredArticles.forEach(function (article) {
+          var formattedDate = formatDate(article.articlePostTime); // 格式化文章日期
+          var articleType = getArticleType(article.articleTypeId); // 獲取文章類型名稱
+          console.log(111);
+
+          // 使用模板字符串創建文章的HTML元素
+          $('#articleContainer').append(`
+        <a href="/front-end/article_detail.html?id=${article.articleId}">
+          <div class="col mb-3">
+            <div class="card my-nav-link" position-relative">
+              <img src="data:image/*;base64,${article.articlePicture}" class="card-img-top fixed-size-image" />
+            </div>
+            <div class="card-body" id="body">
+              <h5 class="card-title">
+                <span>【${articleType}】</span>
+                <span>${article.articleTitle}</span>
+              </h5>
+              <br>
+              <p class="card-text" id="clamp-lines">
+                ${article.articlePostContent}
+              </p>
+            </div>
+            <br>    
+            <div class="d-flex justify-content-between" style="padding: 0 10px;">
+              <p>${article.memberName}</p>
+              <p class="card-text">
+                <small class="text-muted">${formattedDate}</small>
+              </p>
+            </div>
+          </div>
+        </a>
+      `);
+
+          // 格式化日期的輔助函式，請根據實際需求自行實現
+          function formatDate(date) {
+            // 實現日期格式化邏輯，返回格式化後的日期字符串
+            let inputDate = article.articlePostTime;
+            let dateTime = new Date(inputDate);
+            let year = dateTime.getFullYear();
+            let month = String(dateTime.getMonth() + 1).padStart(2, "0");
+            let day = String(dateTime.getDate()).padStart(2, "0");
+            let formattedDate = `${year}-${month}-${day}`;
+            return formattedDate;
+          }
+
+          // 獲取文章類型名稱的輔助函式，請根據實際需求自行實現
+          function getArticleType(articleTypeId) {
+            // 根據articleTypeId返回相應的文章類型名稱
+            let articleType;
+            switch (article.articleTypeId) {
+              case 1:
+                articleType = '遊記';
+                break;
+              case 2:
+                articleType = '食記';
+                break;
+              case 3:
+                articleType = '住宿';
+                break;
+              case 4:
+                articleType = '評論';
+                break;
+              case 5:
+                articleType = '問題';
+                break;
+              default:
+                articleType = '未知類型';
+                break;
+            }
+            return articleType;
+          }
+        })
+      }
+    };
+
+
+  </script>
+
+</body>
+
+</html>
