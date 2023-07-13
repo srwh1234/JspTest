@@ -69,12 +69,6 @@ public class TicketServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	@Override
-	protected void doPost(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
-
-		// doGet(request, response);
-	}
-
 	@Data
 	public static class DescTicketDto {
 		public DescTicketDto(final Ticket ticket) {
