@@ -13,6 +13,9 @@ import tw.com.dao.TicketDao;
 import tw.com.dao.impl.TicketDaoImpl;
 import tw.com.entity.Ticket;
 
+/**
+ * for test
+ */
 @WebServlet("/Test")
 public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
