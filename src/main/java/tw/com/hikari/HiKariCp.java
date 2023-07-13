@@ -1,4 +1,4 @@
-package tw.com.hikari22;
+package tw.com.hikari;
 
 import java.sql.Connection;
 import java.sql.SQLException;
