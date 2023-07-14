@@ -61,6 +61,168 @@
 
 				<!-- sweetalert2 -->
 				<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+				
+					<style>
+				/* 設定預設高度 保持圖片比例並填滿容器*/
+				.image-tour img {
+					width: 100%;
+					height: 18rem;
+					object-fit: cover;
+				}
+
+				.image-tour-hot img {
+					width: 100%;
+					height: 24rem;
+					object-fit: cover;
+				}
+
+				/* 熱門票券照片內的彈窗 */
+				.my-destinations-info {
+					width: 100%;
+					position: absolute;
+					bottom: -227px;
+					margin: 0;
+					background: rgba(0, 0, 0, 0.8);
+					padding: 30px 0px 10px;
+					transition: 0.5s all;
+					-webkit-transition: 0.5s all;
+					-moz-transition: 0.5s all;
+					-o-transition: 0.5s all;
+					-ms-transition: 0.5s all;
+					text-align: center;
+				}
+
+				.destinations-grids:hover .my-destinations-info {
+					bottom: 0;
+				}
+
+				.my-card {
+					height: 11rem;
+				}
+
+				.my-search-item .card {
+					height: 200px;
+				}
+
+				.my-search-item img {
+					width: 100%;
+					height: 16rem;
+					object-fit: cover;
+				}
+
+				.my-search-item .card-body p {
+					display: -webkit-box;
+					/* 顯示幾行文字 */
+					-webkit-line-clamp: 3;
+					-webkit-box-orient: vertical;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				/* 顯示幾行文字 */
+				.package-info p {
+					display: -webkit-box;
+					-webkit-line-clamp: 3;
+					-webkit-box-orient: vertical;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				.package-info h5 {
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				/* 搜尋的按鈕 */
+				#btnSearch {
+					border: #26bec9;
+					color: white;
+					background-color: #26bec9;
+				}
+
+				#btnSearch:hover,
+				#btnSearch:focus {
+					border: #26bec9;
+					background-color: #09777d;
+				}
+
+				/* 手風琴的樣式 */
+				.accordion-button,
+				.accordion-button:not(.collapsed) {
+					color: white;
+					background-color: rgba(38, 190, 201, 1);
+				}
+
+				.accordion-button:focus {
+					z-index: 3;
+					border: 0;
+					outline: 0;
+					box-shadow: 0 0 0 0.25rem transparent;
+					/* border-color: #86b7fe; */
+					/* box-shadow: 0 0 0 0.25rem #26bec9; */
+				}
+
+				/* 箭頭的圖案 */
+				.accordion-button:not(.collapsed)::after {
+					background-image:
+						url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+					transform: rotate(-180deg);
+				}
+
+				/* 篩選的勾勾 */
+				.form-check-input:checked {
+					background-color: #26bec9;
+					border-color: #26bec9;
+				}
+
+				/* 票券名稱下方的標記 */
+				.my-mark {
+					margin: 0 6px 6px 0;
+					padding: 3px 8px;
+					color: #64b3f4;
+					background-color: rgba(100, 179, 244, .1);
+					display: inline-block;
+					line-height: 1;
+					text-align: center;
+					white-space: nowrap;
+					vertical-align: baseline;
+					border-radius: 0.25em;
+				}
+
+				/* 評價的星星 */
+				.my-ratings .on {
+					color: #26bec9;
+				}
+
+				/* 票券價格 */
+				.my-ticket-price {
+					letter-spacing: 1px;
+					color: #333;
+				}
+
+				.page-item .active {
+					border: 1px solid #26bec9;
+					color: white;
+					background-color: #26bec9;
+				}
+
+				.page-item a {
+					color: #999;
+				}
+
+				/* 文字灰色 */
+				.my-text-lightgray {
+					color: #ccc;
+				}
+
+				/* 分頁選單定位*/
+				#ticketsSearchContainer {
+					min-height: 140vh;
+				}
+			</style>
 			</head>
 
 			<body>

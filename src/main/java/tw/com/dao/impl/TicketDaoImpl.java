@@ -17,7 +17,14 @@ public class TicketDaoImpl implements TicketDao {
 
 	@Override
 	public List<Ticket> selectAll() {
-		final String hql = "From Ticket";
+		final String hql = "FROM Ticket";
+		final Query<Ticket> query = this.getSession().createQuery(hql, Ticket.class);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Ticket> selectAllOrderByTotalSales() {
+		final String hql = "FROM Ticket ORDER BY totalSales DESC";
 		final Query<Ticket> query = this.getSession().createQuery(hql, Ticket.class);
 		return query.getResultList();
 	}

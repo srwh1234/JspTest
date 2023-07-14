@@ -2,7 +2,7 @@ package tw.com.controller;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,58 +12,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import lombok.Data;
-import tw.com.dao.PromotionDao;
-import tw.com.dao.PromotionDetailDao;
-import tw.com.dao.TicketDao;
-import tw.com.dao.TicketImageDao;
-import tw.com.dao.impl.PromotionDaoImpl;
-import tw.com.dao.impl.PromotionDetailDaoImpl;
-import tw.com.dao.impl.TicketDaoImpl;
-import tw.com.dao.impl.TicketImageDaoImpl;
-import tw.com.entity.Promotion;
-import tw.com.entity.PromotionDetail;
 import tw.com.entity.Ticket;
-import tw.com.entity.TicketImage;
+import tw.com.service.TicketService;
+import tw.com.service.impl.TicketServiceImpl;
 
 @WebServlet("/ticket")
 public class TicketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
+	public void init() throws ServletException {
+		final String[] locationTypes = {//
+				"主題樂園", "景點門票", "水族館 & 動物園", "博物館 & 美術館", "歷史景點",//
+		};
+		final String[] taiwanCities = {//
+				"基隆市", "台北市", "新北市", "桃園市", "新竹市", "新竹縣", "苗栗縣",//
+				"台中市", "彰化縣", "南投縣", "雲林縣", "嘉義市", "嘉義縣", "台南市",//
+				"高雄市", "屏東縣", "台東縣", "花蓮縣", "宜蘭縣", "澎湖縣", "金門縣", "連江縣"//
+		};
+
+		this.getServletContext().setAttribute("locationTypes", locationTypes);
+		this.getServletContext().setAttribute("taiwanCities", taiwanCities);
+	}
+
+	@Override
 	protected void doGet(final HttpServletRequest request, //
 			final HttpServletResponse response) throws ServletException, IOException {
 
-		final TicketDao dao = new TicketDaoImpl();
-		final TicketImageDao imageDao = new TicketImageDaoImpl();
-		final PromotionDao promotionDao = new PromotionDaoImpl();
-		final PromotionDetailDao promotionDetailDao = new PromotionDetailDaoImpl();
+		final TicketService service = new TicketServiceImpl();
 
-		final ArrayList<DescTicketDto> descTicketDtos = new ArrayList<>();
-		for (final Ticket ticket : dao.selectAll()) {
-			final DescTicketDto dto = new DescTicketDto(ticket);
+		final List<DescTicketDto> rndDescTicketDtos = service.getRndItems(request.getContextPath());
+		request.setAttribute("rndDescTicketDtos", rndDescTicketDtos);
 
-			// 找圖片
-			final TicketImage img = imageDao.selectByTicketId(ticket.getTicketId());
-			if (img != null) {
-				dto.setImage(request.getContextPath() + "/image/" + img.getId());
-			}
-			// 找促銷
-			final PromotionDetail detail = promotionDetailDao.selsectByTicketId(ticket.getTicketId());
-			if (detail != null) {
-				final Promotion promotion = promotionDao.selectById(detail.getKey().getPromotionId());
+		final List<DescTicketDto> hotDescTicketDtos = service.getHotItems(request.getContextPath());
+		request.setAttribute("hotDescTicketDtos", hotDescTicketDtos);
 
-				final PromotionDto promotionDto = new PromotionDto();
-				promotionDto.setPrice(detail.getPromotionPrice());
-				promotionDto.setStartDate(promotion.getStartDate());
-				promotionDto.setEndDate(promotion.getEndDate());
-				dto.setPromotion(promotionDto);
-			}
-
-			descTicketDtos.add(dto);
-		}
-
-		request.setAttribute("descTicketDtos", descTicketDtos);
-
+		// 跳轉
 		final String url = "/front-end/ticket.jsp";
 		final RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
