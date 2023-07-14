@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,8 +25,9 @@ public class Ticket {
 	@Column(name = "ticket_id")
 	private Integer ticketId;
 
-	@Column(name = "ticket_type_id")
-	private Integer ticketTypeId;
+	@OneToOne
+	@JoinColumn(name = "ticket_type_id")
+	private TicketType ticketType;
 
 	private String name;
 

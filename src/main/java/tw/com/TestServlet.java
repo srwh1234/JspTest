@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tw.com.dao.TicketDao;
-import tw.com.dao.impl.TicketDaoImpl;
-import tw.com.entity.Ticket;
+import tw.com.dao.impl.TicketTypeDaoImpl;
 
 /**
  * for test
@@ -23,11 +21,9 @@ public class TestServlet extends HttpServlet {
 	@Override
 	protected void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 
-		final TicketDao dao = new TicketDaoImpl();
+		final TicketTypeDaoImpl dao = new TicketTypeDaoImpl();
 
-		final Ticket ticket = dao.selectById(10);
-
-		request.setAttribute("ticket", ticket);
+		System.out.println(dao.selectAll());
 
 		// final String url = "/front-end/Navbar.jsp";
 		final String url = "/front-end/index.jsp";

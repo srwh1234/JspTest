@@ -23,7 +23,8 @@
 		<mapping class="tw.com.entity.TicketImage" />
 		<mapping class="tw.com.entity.Promotion" />
 		<mapping class="tw.com.entity.PromotionDetail" />
-
+		<mapping class="tw.com.entity.TicketSn" />
+		<mapping class="tw.com.entity.TicketType" />
 
 	</session-factory>
 </hibernate-configuration>
